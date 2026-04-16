@@ -51,9 +51,3 @@ public class PlayerMovementTEST2 : MonoBehaviour
        
     }
 }
-
-//Prueba de guardado
-//Prueba de rama
-//Prueba Ilo
-//Prueba ILO2
-//Prueba branch
