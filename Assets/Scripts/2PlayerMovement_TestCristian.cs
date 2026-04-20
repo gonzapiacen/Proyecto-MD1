@@ -29,7 +29,7 @@ public class PlayerMovementTEST2 : MonoBehaviour
         //Notas: Faltaria agregar para que no/evitar caiga de lados, por el momento lo hice con el inspector
         //con X Y Z para evitar eso.
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             SpeedMovement = FastSpeed;
         }
@@ -42,9 +42,9 @@ public class PlayerMovementTEST2 : MonoBehaviour
         float HorizontalInput = Input.GetAxis("Horizontal");
         float VerticalInput = Input.GetAxis("Vertical");
         
-        Vector3 movePlayer = new Vector3(HorizontalInput, 0, VerticalInput);
+        Vector3 movePlayer = new Vector3(HorizontalInput, 0, VerticalInput).normalized;
 
-        float magnitude = movePlayer.magnitude;
+        
 
         transform.Translate(movePlayer * SpeedMovement * Time.deltaTime);
 
