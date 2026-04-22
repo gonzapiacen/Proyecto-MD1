@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _walkSpeed = 7f;
     [SerializeField] float _sprintSpeed = 10f;
     [SerializeField] float _drag = 5;
-    private float _moveSpeed = 7f;
+    private float _moveSpeed = 5f;
 
     [Header("Ground Check Parameters")]
     [SerializeField] LayerMask _isGround;
