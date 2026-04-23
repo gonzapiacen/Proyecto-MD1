@@ -5,12 +5,14 @@ public class PlayerMovementILO : MonoBehaviour
     private float SpeedMovement;
     [SerializeField] private float FastSpeed;
     [SerializeField] private float NormalSpeed;
+    private Animator animPlayer;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SpeedMovement = NormalSpeed;
+        animPlayer = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class PlayerMovementILO : MonoBehaviour
 
     }
 
-    public void ConfigMoventPlayer() //FUNCION PARA MOVIMIENTO DEL PLAYER
+    //FUNCION PARA MOVIMIENTO DEL PLAYER
+    public void ConfigMoventPlayer() 
     {
         //Notas: Faltaria agregar para que no/evitar caiga de lados, por el momento lo hice con el inspector
         //con X Y Z para evitar eso.
@@ -50,6 +53,14 @@ public class PlayerMovementILO : MonoBehaviour
 
         transform.Translate(movePlayer * SpeedMovement * Time.deltaTime);
 
+        animPlayer.SetFloat("Walkx", HorizontalInput);
+        animPlayer.SetFloat("Walky", VerticalInput);
+
+        //Uso para probar animacion enemiga.
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Destroy(gameObject);
+        }
        
     }
 }
