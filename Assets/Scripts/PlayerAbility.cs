@@ -51,7 +51,7 @@ public class PlayerAbility : MonoBehaviour
                 if (target.collider.CompareTag("Enemy"))
                 {
                     //Debug.Log("Enemy stun");
-                    target.collider.GetComponent<Enemy_Enter>().GetStun();
+                    //target.collider.GetComponent<Enemy_Enter>().GetStun();
                 }
             }
             _chargeTime = 0;

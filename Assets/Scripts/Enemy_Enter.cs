@@ -8,8 +8,8 @@ public class Enemy_Enter : MonoBehaviour
     private Animator anim;
     private bool TrueTarget;
     [SerializeField] private float RangAt = 2f;
-
-    private bool stunned = false;
+    [SerializeField] private float SpeedEnemy = 2f;
+    [SerializeField] private float AccelarationEnemy = 6f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +22,7 @@ public class Enemy_Enter : MonoBehaviour
     void Update()
     {
 
-        if (!stunned)
+       // if (!stunned)
         {
             if (Target != null)
             {
@@ -39,9 +39,12 @@ public class Enemy_Enter : MonoBehaviour
             }
             AttackEnemy();
         }
-        Animation();
+        //Animation();
+        AttackEnemy();
+        ControlEnemy();
+        
     }
-
+/*
     public void Animation()
     {
         if (TrueTarget != false && !stunned)
@@ -55,7 +58,7 @@ public class Enemy_Enter : MonoBehaviour
 
 
     }
-
+*/
     public void AttackEnemy()
     {
         if (Target != null)
@@ -74,19 +77,11 @@ public class Enemy_Enter : MonoBehaviour
         }
 
     }
-
-    public void GetStun()
+    public void ControlEnemy()
     {
-        stunned = true;
-        Agente.isStopped = true;
-        Debug.Log("Enemy Stun");
-        Invoke("UnStun", 7f);
+        Agente.speed = SpeedEnemy;
+        Agente.acceleration = AccelarationEnemy;
     }
 
-    private void UnStun()
-    {
-        stunned = false;
-        Agente.isStopped = false;
-        Debug.Log("Enemy Unstun");
-    }
+ 
 }
