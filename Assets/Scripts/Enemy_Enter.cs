@@ -26,11 +26,8 @@ public class Enemy_Enter : MonoBehaviour
         {
             if (Target != null)
             {
-                if (Vector3.Distance(transform.position, Target.position) > 2f)
-                {
-                    Agente.SetDestination(Target.position);
-                    TrueTarget = true;
-                }
+                Agente.SetDestination(Target.position);
+                TrueTarget = true;
             }
             else
             {
