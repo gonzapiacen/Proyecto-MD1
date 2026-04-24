@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,10 +26,14 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalInput;
     private Vector3 _moveDirection;
 
+    private Animator animPlayer;
+    private int ContadorReliquias;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        animPlayer = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
+
+        //Para tomar la animacion Player -Cris- 
+        animPlayer.SetFloat("Walkx", _horizontalInput);
+        animPlayer.SetFloat("Walky", _verticalInput);
     }
 
     private void Move()
@@ -85,6 +94,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Trigger de Reliquias para completar el juego (Desarrollo) -Cris-
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Reliquia"))
+        {
+            Destroy(collision.gameObject);
+            ContadorReliquias++;
+            Debug.Log(ContadorReliquias);
+        }
+    }
 
 
 }

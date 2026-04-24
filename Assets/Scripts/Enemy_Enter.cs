@@ -7,7 +7,9 @@ public class Enemy_Enter : MonoBehaviour
     public Transform Target;
     private Animator anim;
     private bool TrueTarget;
-    [SerializeField] private float RangAt = 1.5f;
+    [SerializeField] private float RangAt = 2f;
+    [SerializeField] private float SpeedEnemy = 2f;
+    [SerializeField] private float AccelarationEnemy = 6f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,7 +39,7 @@ public class Enemy_Enter : MonoBehaviour
 
         Animation();
         AttackEnemy();
-
+        ControlEnemy();
 
     }
 
@@ -72,5 +74,12 @@ public class Enemy_Enter : MonoBehaviour
 
         }
 
+    }
+
+    public void ControlEnemy()
+    {
+        Agente.speed = SpeedEnemy;
+        Agente.acceleration = AccelarationEnemy;
+        
     }
 }
