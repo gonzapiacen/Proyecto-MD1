@@ -44,7 +44,7 @@ public class Enemy_Enter : MonoBehaviour
 
     public void Animation()
     {
-        if (TrueTarget != false)
+        if (TrueTarget != false && !stunned)
         {
             anim.SetBool("Target_lock", true);
         }
@@ -78,6 +78,7 @@ public class Enemy_Enter : MonoBehaviour
     public void GetStun()
     {
         stunned = true;
+        Agente.isStopped = true;
         Debug.Log("Enemy Stun");
         Invoke("UnStun", 7f);
     }
@@ -85,6 +86,7 @@ public class Enemy_Enter : MonoBehaviour
     private void UnStun()
     {
         stunned = false;
+        Agente.isStopped = false;
         Debug.Log("Enemy Unstun");
     }
 }

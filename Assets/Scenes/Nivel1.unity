@@ -898,6 +898,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fdaa75b836beb1a42b941ed4a4c97e61, type: 2}
+    - target: {fileID: 5866666021909216657, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12605,6 +12609,7 @@ MonoBehaviour:
   _camera: {fileID: 1457971665}
   _range: 5
   _cd: 0
+  _flashlight: {fileID: 1194765476}
 --- !u!43 &819082468
 Mesh:
   m_ObjectHideFlags: 0
@@ -19286,7 +19291,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 120
   m_InnerSpotAngle: 60
@@ -19710,7 +19715,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
