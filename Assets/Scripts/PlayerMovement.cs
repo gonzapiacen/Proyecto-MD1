@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerInputs()
     {
-        _horizontalInput = Input.GetAxisRaw("Horizontal");
-        _verticalInput = Input.GetAxisRaw("Vertical");
+        _horizontalInput = Input.GetAxis("Horizontal");
+        _verticalInput = Input.GetAxis("Vertical");
     }
 
     private void Move()
