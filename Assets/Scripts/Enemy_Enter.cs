@@ -4,10 +4,12 @@ using UnityEngine.AI;
 public class Enemy_Enter : MonoBehaviour
 {
     NavMeshAgent Agente;
-    public Transform Target;
+    [SerializeField] Transform Target;
     private Animator anim;
     private bool TrueTarget;
-    [SerializeField] private float RangAt = 1.5f;
+    [SerializeField] private float RangAt = 2f;
+
+    private bool stunned = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,26 +21,28 @@ public class Enemy_Enter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-        if (Target != null)
+
+        if (!stunned)
         {
-            Agente.SetDestination(Target.position);
-            TrueTarget = true;
-        }
-        else
-        {
-           TrueTarget = false;
-            if (Agente.hasPath)
+            if (Target != null)
             {
-                Agente.ResetPath();
+                if (Vector3.Distance(transform.position, Target.position) > 2f)
+                {
+                    Agente.SetDestination(Target.position);
+                    TrueTarget = true;
+                }
             }
+            else
+            {
+                TrueTarget = false;
+                if (Agente.hasPath)
+                {
+                    Agente.ResetPath();
+                }
+            }
+            AttackEnemy();
         }
-
         Animation();
-        AttackEnemy();
-
-
     }
 
     public void Animation()
@@ -72,5 +76,18 @@ public class Enemy_Enter : MonoBehaviour
 
         }
 
+    }
+
+    public void GetStun()
+    {
+        stunned = true;
+        Debug.Log("Enemy Stun");
+        Invoke("UnStun", 7f);
+    }
+
+    private void UnStun()
+    {
+        stunned = false;
+        Debug.Log("Enemy Unstun");
     }
 }
