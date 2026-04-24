@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class Enemy_Enter : MonoBehaviour
 {
     NavMeshAgent Agente;
-    public Transform Target;
+    [SerializeField] Transform Target;
     private Animator anim;
     private bool TrueTarget;
     [SerializeField] private float RangAt = 2f;
@@ -21,31 +21,33 @@ public class Enemy_Enter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-        if (Target != null)
-        {
-            Agente.SetDestination(Target.position);
-            TrueTarget = true;
-        }
-        else
-        {
-           TrueTarget = false;
-            if (Agente.hasPath)
-            {
-                Agente.ResetPath();
-            }
-        }
 
-        Animation();
+       // if (!stunned)
+        {
+            if (Target != null)
+            {
+                Agente.SetDestination(Target.position);
+                TrueTarget = true;
+            }
+            else
+            {
+                TrueTarget = false;
+                if (Agente.hasPath)
+                {
+                    Agente.ResetPath();
+                }
+            }
+            AttackEnemy();
+        }
+        //Animation();
         AttackEnemy();
         ControlEnemy();
-
+        
     }
-
+/*
     public void Animation()
     {
-        if (TrueTarget != false)
+        if (TrueTarget != false && !stunned)
         {
             anim.SetBool("Target_lock", true);
         }
@@ -56,7 +58,7 @@ public class Enemy_Enter : MonoBehaviour
 
 
     }
-
+*/
     public void AttackEnemy()
     {
         if (Target != null)
@@ -75,11 +77,11 @@ public class Enemy_Enter : MonoBehaviour
         }
 
     }
-
     public void ControlEnemy()
     {
         Agente.speed = SpeedEnemy;
         Agente.acceleration = AccelarationEnemy;
-        
     }
+
+ 
 }
