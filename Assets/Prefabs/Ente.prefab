@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.36
+      value: -0.5212893
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.221
+      value: 0.15863024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.68
+      value: 5.1742425
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1092408308860062549, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.000011067943
@@ -102,9 +106,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2199467915443409295}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3049718572357658815}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
       insertIndex: -1
@@ -118,33 +119,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fa254ee2476c2b644b8d7ff8dea8227a, type: 3}
   m_PrefabInstance: {fileID: 2043762311136283102}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &2199467915443409295
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197270510200763535}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!136 &3049718572357658815
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -198,7 +172,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

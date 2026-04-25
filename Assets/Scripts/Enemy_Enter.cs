@@ -11,6 +11,8 @@ public class Enemy_Enter : MonoBehaviour
     [SerializeField] private float SpeedEnemy = 2f;
     [SerializeField] private float AccelarationEnemy = 6f;
 
+    private bool stunned = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +24,7 @@ public class Enemy_Enter : MonoBehaviour
     void Update()
     {
 
-       // if (!stunned)
+        if (!stunned)
         {
             if (Target != null)
             {
@@ -39,12 +41,10 @@ public class Enemy_Enter : MonoBehaviour
             }
             AttackEnemy();
         }
-        //Animation();
-        AttackEnemy();
+        Animation();
         ControlEnemy();
-        
     }
-/*
+
     public void Animation()
     {
         if (TrueTarget != false && !stunned)
@@ -55,10 +55,8 @@ public class Enemy_Enter : MonoBehaviour
         {
             anim.SetBool("Target_lock", false);
         }
-
-
     }
-*/
+
     public void AttackEnemy()
     {
         if (Target != null)
@@ -77,11 +75,26 @@ public class Enemy_Enter : MonoBehaviour
         }
 
     }
+    
     public void ControlEnemy()
     {
         Agente.speed = SpeedEnemy;
         Agente.acceleration = AccelarationEnemy;
     }
 
- 
+    public void GetStun()
+    {
+        stunned = true;
+        Agente.isStopped = true;
+        Debug.Log("Enemy Stun");
+        Invoke("UnStun", 7f);
+    }
+
+    private void UnStun()
+    {
+        stunned = false;
+        Agente.isStopped = false;
+        Debug.Log("Enemy Unstun");
+    }
+
 }
