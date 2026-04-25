@@ -8,8 +8,8 @@ public class Enemy_Enter : MonoBehaviour
     private Animator anim;
     private bool TrueTarget;
     [SerializeField] private float RangAt = 2f;
-    [SerializeField] private float SpeedEnemy = 2f;
-    [SerializeField] private float AccelarationEnemy = 6f;
+    [SerializeField] private float SpeedEnemy = 1f;
+    [SerializeField] private float AccelarationEnemy = 4f;
 
     private bool stunned = false;
 
@@ -18,6 +18,7 @@ public class Enemy_Enter : MonoBehaviour
     {
         Agente = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        ControlEnemy();
     }
 
     // Update is called once per frame
@@ -42,7 +43,6 @@ public class Enemy_Enter : MonoBehaviour
             AttackEnemy();
         }
         Animation();
-        ControlEnemy();
     }
 
     public void Animation()
