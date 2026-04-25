@@ -100,17 +100,4 @@ public class PlayerMovement : MonoBehaviour
             _rb.linearVelocity = new Vector3(limitedVel.x, _rb.linearVelocity.y, limitedVel.z);
         }
     }
-
-    //Trigger de Reliquias para completar el juego (Desarrollo) -Cris-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Reliquia"))
-        {
-            Destroy(collision.gameObject);
-            ContadorReliquias++;
-            Debug.Log(ContadorReliquias);
-        }
-    }
-
-
 }
