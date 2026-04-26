@@ -26,7 +26,7 @@ public class LockDoor : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
     }
