@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animPlayer;
     private int ContadorReliquias;
+    public bool playerissafe;
 
     void Start()
     {
