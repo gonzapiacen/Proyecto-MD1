@@ -8,6 +8,7 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
 
     NavMeshAgent Agente;
     [SerializeField] Transform Target;
+    [SerializeField] Transform Target2;
     private Animator anim;
     private bool TrueTarget;
     [SerializeField] private float RangAt = 2f;
@@ -15,6 +16,8 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
     [SerializeField] private float AccelarationEnemy = 4f;
 
     [SerializeField] float RangodeVision = 10;
+
+    public ZoneSafe PlayerisSafe;
 
     private bool stunned = false;
 
@@ -29,29 +32,35 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!stunned)
+        if(!PlayerisSafe.GetZoneSafeBool())
         {
-            if (Target != null)
-            {
-                Agente.SetDestination(Target.position);
-                TrueTarget = true;
-            }
-            else
-            {
-                TrueTarget = false;
-                if (Agente.hasPath)
-                {
-                    Agente.ResetPath();
-                }
-            }
-            AttackEnemy();
-        }
-        Animation();
-    }
+            Debug.Log("ENCONTRO PLAYER");
 
-    private void VisionEnte()
-    {
+            if (!stunned)
+            {
+                if (Target != null)
+                {
+                    Agente.SetDestination(Target.position);
+                    TrueTarget = true;
+                }
+                else
+                {
+                    TrueTarget = false;
+                    if (Agente.hasPath)
+                    {
+                        Agente.ResetPath();
+                    }
+                }
+                AttackEnemy();
+            }
+            Animation();    
+        }
+        else
+        {
+            Debug.Log("NO SE ENCONTRO PLAYER");
+            Agente.SetDestination(Target2.position);
+        }
+
        
     }
 
