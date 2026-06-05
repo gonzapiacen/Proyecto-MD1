@@ -5,7 +5,7 @@ public class ZoneSafe : MonoBehaviour
     public PlayerMovement player;
     public bool ZoneSafeBool;
 
-    private void OnTriggerStay(Collider collider) 
+    private void OnTriggerEnter(Collider collider) 
     {
         if(collider.CompareTag("Player"))
         {
