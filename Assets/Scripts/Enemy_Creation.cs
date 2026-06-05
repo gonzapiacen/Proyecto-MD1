@@ -7,6 +7,8 @@ public class Enemy_Creation : MonoBehaviour
     [SerializeField] private GameObject prefabEnemigo;
     [SerializeField] private Transform puntodSpawn;
 
+    public AudioSource audioSourceEnemy;
+
     public bool EnemigoReady = false;
     public float RetrasoCreacion = 1.3f;
 
@@ -16,6 +18,7 @@ public class Enemy_Creation : MonoBehaviour
         {
             EnemigoReady = true;
             Invoke("CreacionEnemigo", RetrasoCreacion);
+            
 
         }
     }
@@ -24,6 +27,7 @@ public class Enemy_Creation : MonoBehaviour
     {
         //GameObject nuevoEnemigo = Instantiate(prefabEnemigo, puntodSpawn.position, puntodSpawn.rotation);
         prefabEnemigo.SetActive(true);
+        audioSourceEnemy.Play();
     }
 
 
