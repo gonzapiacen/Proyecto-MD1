@@ -9,15 +9,18 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
     NavMeshAgent Agente;
     [SerializeField] Transform Target;
     [SerializeField] Transform Target2;
-    private Animator anim;
-    private bool TrueTarget;
+
+
+    [SerializeField] private Animator anim;
+    private bool TrueTarget = true;
+
     [SerializeField] private float RangAt = 2f;
     [SerializeField] private float SpeedEnemy = 1f;
     [SerializeField] private float AccelarationEnemy = 4f;
 
     [SerializeField] float RangodeVision = 10;
 
-    public ZoneSafe PlayerisSafe;
+    public PlayerMovement PlayerisSafe;
 
     private bool stunned = false;
 
@@ -27,41 +30,83 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
         Agente = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         ControlEnemy();
+        PlayerisSafe = Target.GetComponent<PlayerMovement>();
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if(!PlayerisSafe.GetZoneSafeBool())
+        /*
+        if(PlayerisSafe.GetZoneSafeBool())
         {
+   
             Debug.Log("ENCONTRO PLAYER");
 
             if (!stunned)
             {
                 if (Target != null)
                 {
+                    
                     Agente.SetDestination(Target.position);
                     TrueTarget = true;
+                    if(PlayerisSafe.GetZoneSafeBool() || !Agente.hasPath)
+                    {
+                        Agente.ResetPath();
+                    }
                 }
                 else
                 {
                     TrueTarget = false;
-                    if (Agente.hasPath)
+                    if (!Agente.hasPath)
                     {
                         Agente.ResetPath();
                     }
                 }
                 AttackEnemy();
             }
-            Animation();    
+                
         }
         else
         {
             Debug.Log("NO SE ENCONTRO PLAYER");
             Agente.SetDestination(Target2.position);
         }
+        */
 
-       
+        if(PlayerisSafe != null && PlayerisSafe.playerissafe)
+        {
+            if(!stunned && Target2 != null)
+            {
+                if(Agente.destination != Target2.position)
+                {
+                    Agente.SetDestination(Target2.position);
+                    Debug.Log("NO SE ENCONTRO PLAYER");
+                }
+            }
+        }
+        else
+        {
+            if(!stunned && Target != null)
+            {
+                Debug.Log("ENCONTRO PLAYER");
+                Agente.SetDestination(Target.position);
+
+                AttackEnemy();
+            }
+            else
+            {
+                if(!Agente.hasPath)
+                {
+                    TrueTarget = false;
+                    Agente.ResetPath();
+                    Debug.Log("NO SE ENCONTRO PLAYER");
+                }
+            }
+        } 
+
+        Animation();
+
     }
 
     public void Animation()
