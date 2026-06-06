@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ENEMY_TEST_CRIS: MonoBehaviour
+public class EnemyBehaviour: MonoBehaviour
 {
     //IGUAL QUE OTRO CODIGO PERO PARA EVITAR ERRORES HICE ESTE.
     //AGREGA MOVIEMIENTO y PERSECUCION.
@@ -138,6 +138,15 @@ public class ENEMY_TEST_CRIS: MonoBehaviour
 
         }
 
+    }
+
+    public void CheckAttack()
+    {
+        float _distancia = Vector3.Distance(transform.position, Target.position);
+        if(_distancia <= 2)
+        {
+            Target.GetComponent<PlayerHealth>().SetHealth(1);
+        }
     }
     
     public void ControlEnemy()

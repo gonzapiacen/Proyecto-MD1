@@ -1,9 +1,9 @@
 using System;
 using System.Numerics;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float _walkSpeed = 5f;
     [SerializeField] float _sprintSpeed = 7f;
+    [SerializeField] float _crouchSpeed = 2.5f;
     [SerializeField] float _drag = 5;
     private float _moveSpeed = 5f;
+
+    private bool _crouched = false;
 
     [Header("Ground Check Parameters")]
     [SerializeField] LayerMask _isGround;
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_crouched)
         {
             _moveSpeed = _sprintSpeed;
         }
@@ -64,6 +67,18 @@ public class PlayerMovement : MonoBehaviour
         //Para tomar la animacion Player -Cris- 
         animPlayer.SetFloat("Walkx", _horizontalInput);
         animPlayer.SetFloat("Walky", _verticalInput);
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            _crouched = true;
+            _moveSpeed = _crouchSpeed;
+            transform.localScale *= 0.5f;
+        }else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            _crouched = false;
+            _moveSpeed = _walkSpeed;
+            transform.localScale *= 2f;
+        }
     }
 
     private void Move()
