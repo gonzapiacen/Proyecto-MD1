@@ -7,6 +7,7 @@ public class Finale_Cap : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _Textofinal;
     [SerializeField] private GameObject EnteDead;
+    [SerializeField] SnapshotController sc;
     public bool PlayerWin = false;
     void OnTriggerEnter(Collider collider)
     {
@@ -23,7 +24,9 @@ public class Finale_Cap : MonoBehaviour
 
     private void cambioVictoria()
     {
-        SceneManager.LoadScene(3);
+        sc.enabled = false;
+        SceneManager.LoadScene(4);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void ClearText()
